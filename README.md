@@ -1,3 +1,5 @@
+# !!!WIP!!!
+# Projekt noch nicht funktionstüchtig!
 # Template-Sensor Blueprints für Home Assistant: Absolute Luftfeuchtigkeit und Taupunkt
 
 Dieses Repository enthält zwei **Blueprints für Home Assistant**, die Template-Sensoren zur Berechnung der **absoluten Luftfeuchtigkeit** und des **Taupunkts** erstellen. Beide Sensoren basieren auf den Eingabewerten von Temperatur- und Feuchtigkeitssensoren, die du in deinem Home Assistant System bereits eingerichtet hast.
