@@ -59,6 +59,8 @@ Diese Formel liefert den Punkt, an dem die Luft bei gegebener Temperatur und rel
 
 Um die Blueprints direkt in Home Assistant zu verwenden, folge diesen einfachen Schritten:
 
+https://my.home-assistant.io/create-link/?redirect=blueprint_import
+
 1. **Klicke auf die folgenden Links**, um die Blueprints direkt zu importieren:
    - [Template-Sensor für Absolute Luftfeuchtigkeit](https://github.com/nico123469/Absolute-Luftfeuchtigkeit-und-Taupunkt/raw/refs/heads/main/Absolute%20Luftfeuchtigkeit.yaml)
    - [Template-Sensor für Taupunkt](https://github.com/nico123469/Absolute-Luftfeuchtigkeit-und-Taupunkt/raw/refs/heads/main/Taupunkt.yaml)
