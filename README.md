@@ -3,10 +3,52 @@
 Dieses Repository enthält zwei **Blueprints für Home Assistant**, die Template-Sensoren zur Berechnung der **absoluten Luftfeuchtigkeit** und des **Taupunkts** erstellen. Beide Sensoren basieren auf den Eingabewerten von Temperatur- und Feuchtigkeitssensoren, die du in deinem Home Assistant System bereits eingerichtet hast.
 
 ## 🚀 Blueprint 1: Template-Sensor für Absolute Luftfeuchtigkeit
-Der erste Blueprint berechnet die **absolute Luftfeuchtigkeit** in g/m³, basierend auf der gemessenen Temperatur und relativen Luftfeuchtigkeit. Die Berechnung erfolgt mithilfe der Magnus-Formel, die den Dampfdruck in Abhängigkeit von Temperatur und Feuchtigkeit berechnet. Der Sensor gibt den Wassergehalt der Luft als absolute Luftfeuchtigkeit aus, was besonders nützlich ist, um die Luftqualität oder den Zustand von Klimaanlagen und Lüftungssystemen zu überwachen.
+Der erste Blueprint berechnet die **absolute Luftfeuchtigkeit** in g/m³, basierend auf der gemessenen Temperatur und relativen Luftfeuchtigkeit. Die Berechnung erfolgt mithilfe der **Magnus-Formel** für den Sättigungsdampfdruck:
+
+### Berechnungsformel:
+Die Magnus-Formel zur Berechnung des Sättigungsdampfdruckes (es) lautet:
+
+\[
+e_s(T) = 6.112 \cdot e^{\left(\frac{17.67 \cdot T}{T + 243.5}\right)}
+\]
+
+Dabei ist:
+- \( T \) die Temperatur in °C.
+- \( e_s(T) \) der Sättigungsdampfdruck in hPa.
+
+Die absolute Luftfeuchtigkeit (AH) wird dann mit der folgenden Formel berechnet:
+
+\[
+AH = \frac{216.7 \cdot (e_s(T) \cdot RH)}{T + 273.15}
+\]
+
+Dabei ist:
+- \( RH \) die relative Luftfeuchtigkeit in Prozent (von 0 bis 100).
+- \( T \) die Temperatur in °C.
+- \( AH \) die absolute Luftfeuchtigkeit in g/m³.
+
+Der Sensor gibt den Wassergehalt der Luft als absolute Luftfeuchtigkeit aus, was besonders nützlich ist, um die Luftqualität oder den Zustand von Klimaanlagen und Lüftungssystemen zu überwachen.
 
 ## 🌡️ Blueprint 2: Template-Sensor für Taupunkt
-Der zweite Blueprint berechnet den **Taupunkt** in °C, der angibt, bei welcher Temperatur die Luft gesättigt ist und Wasserdampf kondensiert. Der Taupunkt ist eine wichtige Größe für die Analyse von Feuchtigkeit und Luftqualität. Dieser Sensor verwendet ebenfalls Temperatur- und Feuchtigkeitssensoren und berechnet den Taupunkt anhand der **Ternary-Formel**.
+Der zweite Blueprint berechnet den **Taupunkt** in °C, der angibt, bei welcher Temperatur die Luft gesättigt ist und Wasserdampf kondensiert. Der Taupunkt ist eine wichtige Größe für die Analyse von Feuchtigkeit und Luftqualität.
+
+### Berechnungsformel:
+Der Taupunkt \( T_d \) wird mit der **Ternary-Formel** berechnet:
+
+\[
+\alpha = \frac{17.27 \cdot T}{T + 237.7} + \ln\left(\frac{RH}{100}\right)
+\]
+
+\[
+T_d = \frac{237.7 \cdot \alpha}{17.27 - \alpha}
+\]
+
+Dabei ist:
+- \( T \) die Temperatur in °C.
+- \( RH \) die relative Luftfeuchtigkeit in Prozent (0–100).
+- \( T_d \) der Taupunkt in °C.
+
+Diese Formel liefert den Punkt, an dem die Luft bei gegebener Temperatur und relativer Luftfeuchtigkeit zu kondensieren beginnt.
 
 ## 🛠️ Funktionen und Vorteile
 - **Flexibilität**: Beide Blueprints ermöglichen es, Temperatur- und Feuchtigkeitssensoren nach Belieben auszuwählen, sodass du sie an deine bestehende Sensorik anpassen kannst.
