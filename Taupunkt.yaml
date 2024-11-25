@@ -1,1 +1,39 @@
+blueprint:
+  name: Template-Sensor für Taupunkt
+  description: Erzeugt einen Template-Sensor, der den Taupunkt (°C) basierend auf Temperatur und relativer Luftfeuchtigkeit berechnet.
+  domain: template
+  input:
+    temperature_sensor:
+      name: Temperatur-Sensor
+      description: Wähle den Sensor für die Temperatur
+      selector:
+        entity:
+          domain: sensor
+    humidity_sensor:
+      name: Feuchtigkeits-Sensor
+      description: Wähle den Sensor für die relative Luftfeuchtigkeit
+      selector:
+        entity:
+          domain: sensor
+    sensor_name:
+      name: Name des Sensors für den Taupunkt
+      description: Der Name des zu erstellenden Sensors.
+      default: "taupunkt"
 
+variables:
+  temperature_sensor: !input temperature_sensor
+  humidity_sensor: !input humidity_sensor
+
+sensor:
+  - name: !input sensor_name
+    unit_of_measurement: "°C"
+    state: >
+      {% set temp = states(temperature_sensor) | float %}
+      {% set hum = states(humidity_sensor) | float %}
+      {% set a = 17.27 %}
+      {% set b = 237.7 %}
+      {% set alpha = ((a * temp) / (b + temp)) + (hum / 100) %}
+      {% set dp = (b * alpha) / (a - alpha) %}
+      {{ dp | round(1) }}
+    availability: >
+      {{ states(temperature_sensor) not in ['unknown', 'unavailable'] and states(humidity_sensor) not in ['unknown', 'unavailable'] }}
