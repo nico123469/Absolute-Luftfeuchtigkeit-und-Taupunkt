@@ -61,7 +61,7 @@ Um die Blueprints direkt in Home Assistant zu verwenden, folge diesen einfachen 
 
 1. **Klicke auf die folgenden Links**, um die Blueprints direkt zu importieren:
    - [Template-Sensor für Absolute Luftfeuchtigkeit](https://github.com/nico123469/Absolute-Luftfeuchtigkeit-und-Taupunkt/raw/refs/heads/main/Absolute%20Luftfeuchtigkeit.yaml)
-   - [Template-Sensor für Taupunkt](https://raw.githubusercontent.com/DEIN_GITHUB_BENUTZERNAME/REPOSITORY_NAME/main/template_taupunkt.yaml)
+   - [Template-Sensor für Taupunkt](https://github.com/nico123469/Absolute-Luftfeuchtigkeit-und-Taupunkt/raw/refs/heads/main/Taupunkt.yaml)
 
 2. **Importiere den Blueprint in Home Assistant**:
    - Gehe in Home Assistant zu **Einstellungen** → **Blueprints** → **Blueprint importieren**.
