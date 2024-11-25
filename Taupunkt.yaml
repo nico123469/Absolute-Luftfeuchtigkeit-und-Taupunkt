@@ -2,6 +2,11 @@ blueprint:
   name: Template-Sensor für Taupunkt
   description: Berechnet den Taupunkt basierend auf Temperatur und relativer Luftfeuchtigkeit.
   domain: template
+  
+  variables:
+    temperature: "{{ states(temperature_sensor) | float }}"
+    humidity: "{{ states(humidity_sensor) | float }}"
+
   input:
     temperature_sensor:
       name: Temperatur Sensor
@@ -15,9 +20,6 @@ blueprint:
       selector:
         entity:
           domain: sensor
-variables:
-  temperature: "{{ states(temperature_sensor) | float }}"
-  humidity: "{{ states(humidity_sensor) | float }}"
 sensor:
   - name: "Taupunkt"
     state: >
