@@ -1,39 +1,29 @@
 blueprint:
   name: Template-Sensor für Taupunkt
-  description: Erzeugt einen Template-Sensor, der den Taupunkt (°C) basierend auf Temperatur und relativer Luftfeuchtigkeit berechnet.
+  description: Berechnet den Taupunkt basierend auf Temperatur und relativer Luftfeuchtigkeit.
   domain: template
   input:
     temperature_sensor:
-      name: Temperatur-Sensor
-      description: Wähle den Sensor für die Temperatur
+      name: Temperatur Sensor
+      description: Der Temperatur-Sensor, dessen Wert verwendet wird.
       selector:
         entity:
           domain: sensor
     humidity_sensor:
-      name: Feuchtigkeits-Sensor
-      description: Wähle den Sensor für die relative Luftfeuchtigkeit
+      name: Feuchtigkeit Sensor
+      description: Der Feuchtigkeit-Sensor, dessen Wert verwendet wird.
       selector:
         entity:
           domain: sensor
-    sensor_name:
-      name: Name des Sensors für den Taupunkt
-      description: Der Name des zu erstellenden Sensors.
-      default: "taupunkt"
-
 variables:
-  temperature_sensor: !input temperature_sensor
-  humidity_sensor: !input humidity_sensor
-
+  temperature: "{{ states(temperature_sensor) | float }}"
+  humidity: "{{ states(humidity_sensor) | float }}"
 sensor:
-  - name: !input sensor_name
-    unit_of_measurement: "°C"
+  - name: "Taupunkt"
     state: >
-      {% set temp = states(temperature_sensor) | float %}
-      {% set hum = states(humidity_sensor) | float %}
-      {% set a = 17.27 %}
-      {% set b = 237.7 %}
-      {% set alpha = ((a * temp) / (b + temp)) + (hum / 100) %}
-      {% set dp = (b * alpha) / (a - alpha) %}
-      {{ dp | round(1) }}
-    availability: >
-      {{ states(temperature_sensor) not in ['unknown', 'unavailable'] and states(humidity_sensor) not in ['unknown', 'unavailable'] }}
+      {% set T = temperature %}
+      {% set RH = humidity %}
+      {% set alpha = (17.27 * T) / (T + 237.7) + (log(RH / 100)) %}
+      {% set T_d = (237.7 * alpha) / (17.27 - alpha) %}
+      {{ T_d | round(1) }}
+    unit_of_measurement: "°C"
