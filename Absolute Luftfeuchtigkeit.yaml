@@ -1,7 +1,7 @@
 blueprint:
   name: Template-Sensor für Absolute Luftfeuchtigkeit
   description: Berechnet die absolute Luftfeuchtigkeit basierend auf Temperatur und relativer Luftfeuchtigkeit.
-  domain: homeassistant
+  domain: template 
   input:
     temperature_sensor:
       name: Temperatur Sensor
