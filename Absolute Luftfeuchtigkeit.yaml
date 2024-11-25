@@ -1,1 +1,37 @@
+blueprint:
+  name: Template-Sensor für Absolute Luftfeuchtigkeit
+  description: Erzeugt einen Template-Sensor, der die absolute Luftfeuchtigkeit (g/m³) basierend auf Temperatur und relativer Luftfeuchtigkeit berechnet.
+  domain: template
+  input:
+    temperature_sensor:
+      name: Temperatur-Sensor
+      description: Wähle den Sensor für die Temperatur
+      selector:
+        entity:
+          domain: sensor
+    humidity_sensor:
+      name: Feuchtigkeits-Sensor
+      description: Wähle den Sensor für die relative Luftfeuchtigkeit
+      selector:
+        entity:
+          domain: sensor
+    sensor_name:
+      name: Name des Sensors für die Absolute Luftfeuchtigkeit
+      description: Der Name des zu erstellenden Sensors.
+      default: "absolute_luftfeuchtigkeit"
 
+variables:
+  temperature_sensor: !input temperature_sensor
+  humidity_sensor: !input humidity_sensor
+
+sensor:
+  - name: !input sensor_name
+    unit_of_measurement: "g/m³"
+    state: >
+      {% set temp = states(temperature_sensor) | float %}
+      {% set hum = states(humidity_sensor) | float %}
+      {% set es = 6.112 * (2.718281828459045 ** ((17.67 * temp) / (temp + 243.5))) %}
+      {% set ah = 216.7 * (es * hum / 100) / (temp + 273.15) %}
+      {{ ah | round(1) }}
+    availability: >
+      {{ states(temperature_sensor) not in ['unknown', 'unavailable'] and states(humidity_sensor) not in ['unknown', 'unavailable'] }}
