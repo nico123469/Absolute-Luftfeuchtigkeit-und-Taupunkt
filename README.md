@@ -56,9 +56,22 @@ Diese Formel liefert den Punkt, an dem die Luft bei gegebener Temperatur und rel
 - **Einfache Konfiguration**: Die Blueprints bieten eine benutzerfreundliche Möglichkeit, neue Sensoren zu erstellen, ohne dass tiefgehende YAML-Kenntnisse erforderlich sind.
 
 ## 📥 Installation und Verwendung
-1. Lade die jeweiligen YAML-Dateien für die Blueprints herunter.
-2. Importiere sie über **Einstellungen** → **Blueprints** → **Blueprint importieren** in Home Assistant.
-3. Erstelle neue Template-Sensoren basierend auf den Blueprints und wähle die gewünschten Eingabewerte (Temperatur- und Feuchtigkeitssensoren).
-4. Die neuen Sensoren sind sofort verfügbar und können für Automatisierungen, Dashboards und weitere Analysen genutzt werden.
+
+Um die Blueprints direkt in Home Assistant zu verwenden, folge diesen einfachen Schritten:
+
+1. **Klicke auf die folgenden Links**, um die Blueprints direkt zu importieren:
+   - [Template-Sensor für Absolute Luftfeuchtigkeit](https://raw.githubusercontent.com/DEIN_GITHUB_BENUTZERNAME/REPOSITORY_NAME/main/template_absolute_luftfeuchtigkeit.yaml)
+   - [Template-Sensor für Taupunkt](https://raw.githubusercontent.com/DEIN_GITHUB_BENUTZERNAME/REPOSITORY_NAME/main/template_taupunkt.yaml)
+
+2. **Importiere den Blueprint in Home Assistant**:
+   - Gehe in Home Assistant zu **Einstellungen** → **Blueprints** → **Blueprint importieren**.
+   - Füge die obenstehenden Links in das **URL-Feld** ein und klicke auf **Importieren**.
+
+3. **Erstelle neue Template-Sensoren**:
+   - Nach dem Import kannst du neue Template-Sensoren basierend auf den Blueprints erstellen.
+   - Wähle die Eingabewerte aus (Temperatur- und Feuchtigkeitssensoren) und konfiguriere die Sensoren nach deinen Bedürfnissen.
+
+4. **Verwendung**:
+   - Die neuen Sensoren sind sofort verfügbar und können für Automatisierungen, Dashboards und weitere Analysen genutzt werden.
 
 Diese Blueprints bieten eine einfache und flexible Möglichkeit, die Luftfeuchtigkeit und den Taupunkt in deinem Home Assistant System zu überwachen und zu nutzen.
