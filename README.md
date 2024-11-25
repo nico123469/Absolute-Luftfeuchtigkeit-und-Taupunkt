@@ -1,5 +1,5 @@
 # !!!WIP!!!
-# Projekt noch nicht funktionstüchtig!
+## Projekt noch nicht funktionstüchtig!
 Homeassistant erkennt die domain template nicht obwohl diese auf der homepage als option aufgeführt wird.
 # Template-Sensor Blueprints für Home Assistant: Absolute Luftfeuchtigkeit und Taupunkt
 
