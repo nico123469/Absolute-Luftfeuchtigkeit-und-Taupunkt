@@ -4,14 +4,10 @@ blueprint:
   domain: template-sensor
   
 variables:
-  temperature: temperature_sensor
-  humidity:  humidity_sensor
-
-variables:
-  temperature_sensor: !input "{{ states(temperature_sensor) | float }}"
-  humidity_sensor: !input "{{ states(humidity_sensor) | float }}"
-  
-  
+  temperature_sensor: !input temperature_sensor
+  humidity_sensor: !input humidity_sensor
+  temperature: "{{ states(temperature_sensor) | float }}"
+  humidity: "{{ states(humidity_sensor) | float }}"
 
 sensor:
   - name: "Taupunkt"
