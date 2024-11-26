@@ -17,6 +17,8 @@ blueprint:
           domain: sensor
   
 variables:
+  temperature_sensor: !input temperature_sensor
+  humidity_sensor: !input humidity_sensor
   temperature: "{{ states(temperature_sensor) | float }}"
   humidity: "{{ states(humidity_sensor) | float }}"
 
