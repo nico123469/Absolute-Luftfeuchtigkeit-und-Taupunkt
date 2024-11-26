@@ -3,8 +3,8 @@ blueprint:
   description: Berechnet den Taupunkt basierend auf Temperatur und relativer Luftfeuchtigkeit.
   domain: template
   variables:
-    temperature: !input my_input
-    humidity: !input my_input
+    temperature: !input temperature_sensor
+    humidity: !input humidity_sensor
   input:
     temperature_sensor:
       name: Temperatur Sensor
