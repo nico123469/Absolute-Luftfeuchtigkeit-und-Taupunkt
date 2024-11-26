@@ -2,6 +2,19 @@ blueprint:
   name: Template-Sensor für Taupunkt
   description: Berechnet den Taupunkt basierend auf Temperatur und relativer Luftfeuchtigkeit.
   domain: template-sensor
+  input:
+    temperature_sensor:
+      name: Temperatur Sensor
+      description: Der Temperatur-Sensor, dessen Wert verwendet wird.
+      selector:
+        entity:
+          domain: sensor
+    humidity_sensor:
+      name: Feuchtigkeit Sensor
+      description: Der Feuchtigkeit-Sensor, dessen Wert verwendet wird.
+      selector:
+        entity:
+          domain: sensor
   
 variables:
   temperature_sensor: !input temperature_sensor
